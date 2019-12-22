@@ -1,0 +1,18 @@
+{
+  "extends": ["plugin:prettier/recommended"],
+
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "script",
+    "ecmaFeatures": {}
+  },
+  "rules": {
+    "no-console": 2,
+    "no-unused-vars": 2,
+    "no-const-assign": 2,
+    "prefer-const": 2
+  },
+  "env": {
+    "browser": true
+  }
+}
