@@ -9,39 +9,53 @@
   </head>
   <body>
     <script>
-      // function outer() {
-      //   const outerVar = 'Hello I am outer var';
-      //   function inner() {
-      //     const innerVar = 'Hey I am inner var';
-      //     console.log(outerVar);
-      //     console.log(innerVar);
+      // function mostOuter() {
+      //   const mostOuterVar = 'Hello I am MOST OUTER VAR';
+      //   function outer() {
+      //     const outerVar = 'Hello I am outer';
+      //     function inner() {
+      //       const innerVar = 'Hello I am inner';
+      //       console.log(outerVar);
+      //       console.log(innerVar);
+      //       console.log(mostOuterVar);
+      //       return undefined;
+      //     }
+      //     // window.innerFn = inner;
+      //     return inner();
       //   }
-      //   return inner;
+
+      //   return outer();
       // }
-      // const innerFn = outer();
 
-      function createGreeting(greeting = '') {
-        const myGreet = greeting.toUpperCase();
-        return function(name) {
-          console.log(`${myGreet} ${name}`);
-        };
-      }
-      const sayHello = createGreeting('Hello');
-      const sayHey = createGreeting('Hey');
+      // mostOuter()();
 
-      console.log(sayHello('Igor'));
-      console.log(sayHey('Igor'));
+      // function createGreeting(greeting = '') {
+      //   const myGreet = greeting.toUpperCase();
+      //   return function(name) {
+      //     console.log(`${myGreet} ${name}`);
+      //   };
+      // }
 
-      function createGame(gameName) {
+      // const sayHello = createGreeting('Hello');
+      // const sayHi = createGreeting('Hi');
+      // const sayPrivet = createGreeting('Privet');
+
+      // console.log(sayHello('Igor'));
+      // console.log(sayPrivet(123));
+      // console.log(sayHello('Pedro'));
+      // console.log(sayHi('Igor'));
+
+      function createGame(nameGame) {
         let score = 0;
-        return function win() {
+
+        return function() {
           score++;
-          return `Your name ${gameName} is ${score}`;
+          return `Your score for ${nameGame} is ${score}`;
         };
       }
 
-      const hokeyScore = createGame('Hokey');
       const soccerGame = createGame('Soccer');
+      const whoWantToBeABillioner = createGame('Billioner');
     </script>
   </body>
 </html>
