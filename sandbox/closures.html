@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Closures</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
+  <body>
+    <script>
+      // function outer() {
+      //   const outerVar = 'Hello I am outer var';
+      //   function inner() {
+      //     const innerVar = 'Hey I am inner var';
+      //     console.log(outerVar);
+      //     console.log(innerVar);
+      //   }
+      //   return inner;
+      // }
+      // const innerFn = outer();
+
+      function createGreeting(greeting = '') {
+        const myGreet = greeting.toUpperCase();
+        return function(name) {
+          console.log(`${myGreet} ${name}`);
+        };
+      }
+      const sayHello = createGreeting('Hello');
+      const sayHey = createGreeting('Hey');
+
+      console.log(sayHello('Igor'));
+      console.log(sayHey('Igor'));
+
+      function createGame(gameName) {
+        let score = 0;
+        return function win() {
+          score++;
+          return `Your name ${gameName} is ${score}`;
+        };
+      }
+
+      const hokeyScore = createGame('Hokey');
+      const soccerGame = createGame('Soccer');
+    </script>
+  </body>
+</html>

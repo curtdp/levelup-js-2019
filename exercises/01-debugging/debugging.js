@@ -5,8 +5,12 @@ const people = [
 ];
 
 people.forEach((person, index) => {
-  console.log(person.name);
+  // console.info(person.name);
+  // console.error(person.name); // stack trace
+  // console.warn(person.name);
 });
+
+// console.table(people);
 
 // Console methods
 
@@ -33,12 +37,14 @@ function doALotOfStuff() {
 }
 
 function doctorize(name) {
-  // console.count(`running doctorize for ${name}`);
+  console.count(`running doctorize for ${name}`);
   return `Dr. ${name}`;
 }
 
+// doctorize('Igor'); // run in browser console
+
 function greet(name) {
-  doesntExist(); // Функция не существует не объявлена
+  // doesntExist(); // Функция не существует не объявлена
   return `Hello ${name}`;
 }
 
@@ -52,7 +58,7 @@ function bootstrap() {
   go();
 }
 
-// bootstrap();
+bootstrap();
 
 const button = document.querySelector('.bigger');
 button.addEventListener('click', function(e) {
