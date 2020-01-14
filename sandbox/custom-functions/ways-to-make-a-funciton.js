@@ -44,7 +44,7 @@ const igor = {
     console.log(`Hey ${this.name} 2`);
   },
   sayHi3: sayHiForIgor,
-  sayHiForIgor,
+  sayHiForIgor
 };
 
 igor.sayHi();

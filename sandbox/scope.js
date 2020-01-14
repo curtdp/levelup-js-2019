@@ -1,10 +1,7 @@
-/* eslint-disable */
-
 // window object
 // const first = 'Igor';
 // let second = 'Oliinyk';
 // var age = 100;
-
 function sayHi() {
   console.log('Hi!');
 }

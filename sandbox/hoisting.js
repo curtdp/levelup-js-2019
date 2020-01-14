@@ -1,7 +1,6 @@
 var age;
 console.log(age);
 age = 10;
-
 sayHi();
 
 function sayHi() {

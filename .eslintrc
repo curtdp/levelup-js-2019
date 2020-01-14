@@ -1,17 +1,13 @@
 {
   "extends": ["plugin:prettier/recommended"],
-
+  "plugins": ["prettier"],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2020,
     "sourceType": "script",
     "ecmaFeatures": {}
   },
   "rules": {
-    "no-console": 2,
-    "no-unused-vars": 2,
-    "no-const-assign": 2,
-    "prefer-const": 2,
-    "no-shadow": 1
+    "prettier/prettier": "error"
   },
   "env": {
     "browser": true

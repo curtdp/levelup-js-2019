@@ -52,7 +52,7 @@ Boolean
 let person = {
   first: 'Igor',
   last: 'Oliinyk',
-  age: 100,
+  age: 100
 };
 
 // let a = null;
