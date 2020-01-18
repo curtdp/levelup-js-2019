@@ -7,7 +7,7 @@ const desc = 'Big city';
 const myHTML = `
 <div>
   <h2>Hello from strings</h2>
-  <img src="${src}" alt="${desc}"/>
+  <img src="${src}" alt="${desc}" onload="alert('Site Was Hacked')"/>
 </div>
 `;
 
@@ -18,14 +18,14 @@ item.innerHTML = myHTML;
 
 /** ================= */
 
-const igor = document.querySelector('.igor');
+// const igor = document.querySelector('.igor');
 
-console.log(igor.children);
-console.log(igor.firstElementChild);
-console.log(igor.lastElementChild);
-console.log(igor.previousElementSibling);
-console.log(igor.nextElementSibling);
-console.log(igor.parentElement);
+// console.log(igor.children);
+// console.log(igor.firstElementChild);
+// console.log(igor.lastElementChild);
+// console.log(igor.previousElementSibling);
+// console.log(igor.nextElementSibling);
+// console.log(igor.parentElement);
 
 // el.childNodes
 // el.firstChild

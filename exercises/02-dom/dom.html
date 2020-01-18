@@ -6,20 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DOM</title>
   <link rel="stylesheet" href="../../base.css">
-  <script src="dom.js"></script>
+  <style>
+    img {
+      transition: all 200ms;
+    }
+    .rounded {
+      transform: rotate(1turn);
+      border-radius: 50%;
+    }
+    .shadow {
+      box-shadow: 0 0 20px black;
+    }
+  </style>
 </head>
   <body>
     <div class="wrapper">
+      <img class="photo avatar"
+        data-name="Igor"
+        data-last="Oliinyk"
+      src="https://source.unsplash.com/random/300x300" width="300" height="300" alt="Unsplash случайная картинка">
       <div class="items">
-        <p>Привет, я параграф</p>
+        <p id="hi">Привет, я параграф</p>
         <div>
-          <h2>Подзаголовок</h2>
-          <p>Привет, я параграф</p>
+          <h2>Подзаголовок
+            <em>Привет</em>
+
+            <style>
+              em {
+                display:none;
+              }
+            </style>
+
+          </h2>
+          <p class="item">Привет, я параграф</p>
+          <p class="pizzaList">Пицца 4 сыра, Пицца барбекю, 🍺</p>
         </div>
-        <img src="https://source.unsplash.com/random/600x400" alt="Unsplash случайная картинка">
-        <p>Я параграф</p>
-        <p>Я параграф</p>
+        <p class="item">Я параграф</p>
+        <p class="item">Я параграф</p>
       </div>
     </div>
+    <script src="dom.js"></script>
   </body>
 </html>
