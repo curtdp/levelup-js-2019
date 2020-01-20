@@ -37,7 +37,8 @@ const li1 = document.createElement('li');
 li1.textContent = 'First';
 const li2 = li1.cloneNode();
 li2.textContent = 'Second';
-const li3 = document.createElement('li');
+/* eslint-disable */
+const li3 = document.createElement  ('li');
 li3.textContent = 'Third';
 const li4 = document.createElement('li');
 li4.textContent = 'Fourth';
