@@ -24,4 +24,4 @@ switch (prompt('case 1 or 2')) {
     break;
 }
 
-btn.addEventListener('click', handler());
+btn.addEventListener('click', handler);
