@@ -15,13 +15,52 @@ const shakeBtn = document.querySelector('.shake-btn');
 
 const { width, height } = canvas;
 
-ctx.lineJoin = 'square';
-ctx.lineCap = 'square';
+ctx.lineJoin = 'round';
+ctx.lineCap = 'round';
 ctx.lineWidth = 10;
 
-ctx.strokeStyle = `hsl(0, 100%, 50%)`;
+let x = Math.floor(Math.random() * width);
+let y = Math.floor(Math.random() * height);
+
+let hue = 0;
+ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 ctx.beginPath(); // Начать рисовать
-ctx.moveTo(200, 200);
-ctx.lineTo(100, 200);
-ctx.lineTo(150, 250);
+ctx.moveTo(x, y);
+ctx.lineTo(x, y);
 ctx.stroke();
+
+const MOVE_AMOUT = 10;
+
+function draw({ key }) {
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+  hue += 10;
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+
+  switch (key) {
+    case 'ArrowUp':
+      y -= MOVE_AMOUT;
+      break;
+    case 'ArrowRight':
+      x += MOVE_AMOUT;
+      break;
+    case 'ArrowDown':
+      y += MOVE_AMOUT;
+      break;
+    case 'ArrowLeft':
+      x -= MOVE_AMOUT;
+      break;
+  }
+
+  ctx.lineTo(x, y);
+  ctx.stroke();
+}
+
+function handleKey(event) {
+  if (event.key.includes('Arrow')) {
+    event.preventDefault();
+    draw(event);
+  }
+}
+
+window.addEventListener('keydown', handleKey);
