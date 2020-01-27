@@ -64,15 +64,25 @@ let company = [
   {
     car: 3,
     computer: 7,
-    cooler: 1
+    cooler: 1,
+    bike: 2
   },
   {
     car: 0,
     computer: 1,
-    cooler: 0
+    cooler: 0,
+    scooter: 4
   }
 ];
 
-let activesSum = company.reduce(function(e) {
-  return {};
+let activesSum = company.reduce(function(acc, item) {
+  for (let [key, value] of Object.entries(item)) {
+    if (acc[key] === undefined) {
+      acc[key] = 0;
+    }
+    acc[key] += value;
+  }
+  return acc;
 }, {});
+
+activesSum; //?
