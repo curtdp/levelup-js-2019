@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Modal</title>
+  <link href="tailwind.min.css" rel="stylesheet">
+  <style>
+    .grid {
+      display: grid;
+      grid-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    .modal-outer {
+      background-color: hsl(190, 100%, 50%, 0.8);
+      transition: all 1s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .isOpen {
+      opacity: 1;
+      pointer-events:all;
+    }
+  </style>
+</head>
+<body class="bg-orange-300">
+  <div class="wrapper grid p-8 w-full">
+    <div class="card bg-white shadow-xl p-4 border rounded-lg flex flex-col" data-description="Мотоциклы это хорошо">
+      <img class="image object-cover" src="https://images.unsplash.com/photo-1558981285-501cd9af9426?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" alt="">
+      <h2 class="text-3xl text-gray-800 font-bold ">Мотоцикл</h2>
+      <button class="border bg-indigo-700 hover:bg-indigo-500 text-indigo-100 focus:outline-none focus:shadow-outline border-none mt-2 py-2 rounded">Читать дальше</button>
+    </div>
+    <div class="card bg-white shadow-xl p-4 border rounded-lg flex flex-col" data-description="Пейте аккуратно">
+      <img class="image object-cover" src="https://images.unsplash.com/photo-1580050763399-dd2fd9b951c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" alt="">
+      <h2 class="text-3xl text-gray-800 font-bold ">Вино</h2>
+      <button class="border bg-indigo-700 hover:bg-indigo-500 text-indigo-100 focus:outline-none focus:shadow-outline border-none mt-2 py-2 rounded">Читать дальше</button>
+    </div>
+    <div class="card bg-white shadow-xl p-4 border rounded-lg flex flex-col" data-description="Наслаждайтесь видом">
+      <img class="image object-cover" src="https://images.unsplash.com/photo-1580017996427-71f08e963b76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" alt="">
+      <h2 class="text-3xl text-gray-800 font-bold ">Пейзаж</h2>
+      <button class="border bg-indigo-700 hover:bg-indigo-500 text-indigo-100 focus:outline-none focus:shadow-outline border-none mt-2 py-2 rounded">Читать дальше</button>
+    </div>
+    <div class="card bg-white shadow-xl p-4 border rounded-lg flex flex-col" data-description="Ехать аккуратно, но быстро">
+      <img class="image object-cover" src="https://images.unsplash.com/photo-1580045473327-9e0504201afd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=200&q=80" alt="">
+      <h2 class="text-3xl text-gray-800 font-bold ">Гонка</h2>
+      <button class="border bg-indigo-700 hover:bg-indigo-500 text-indigo-100 focus:outline-none focus:shadow-outline border-none mt-2 py-2 rounded">Читать дальше</button>
+    </div>
+  </div>
+  <div class="modal-outer w-screen h-screen absolute top-0 left-0 flex items-center justify-center">
+    <div class="modal-inner min-w-2xl p-10 bg-white rounded-lg shadow-2xl">content</div>
+  </div>
+  <script src="modal.js"></script>
+</body>
+</html>
