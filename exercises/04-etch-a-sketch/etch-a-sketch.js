@@ -1,5 +1,3 @@
-/** @type {CanvasRenderingContext2D} */
-
 // Выбрать элементы на странице
 // canvas и кнопка сброса
 const canvas = document.querySelector('.screen');
@@ -64,3 +62,20 @@ function handleKey(event) {
 }
 
 window.addEventListener('keydown', handleKey);
+
+shakeBtn.addEventListener('click', clearCanvas);
+
+function clearCanvas() {
+  canvas.classList.add('shake');
+  ctx.clearRect(0, 0, width, height);
+  canvas.addEventListener(
+    'animationend',
+    function() {
+      canvas.classList.remove('shake');
+      console.log('Done the shake!');
+    },
+    {
+      once: true
+    }
+  );
+}
