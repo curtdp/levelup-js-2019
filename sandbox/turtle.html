@@ -4,10 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title></title>
-    <link rel˜∫="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../base.css" />
   </head>
 
   <body>
+    <style>
+      .turt {
+        --x: 0;
+        --y: 0;
+        --flip: 0;
+        --rotate: 0;
+        position: relative;
+        transform: translateX(var(--x)) translateY(var(--y))
+          rotateY(var(--flip)) rotateZ(var(--rotate));
+        transition: all 0.2s;
+      }
+    </style>
     <img width="200" src="./turtle.png" alt="Turt" class="turt" />
     <script src="turtle.js"></script>
   </body>
