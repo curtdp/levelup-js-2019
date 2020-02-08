@@ -1,3 +1,5 @@
+/*eslint comma-dangle: ["error", "always-multiline"]*/
+
 const person = {
   first: 'Igor',
   last: 'Oliinyk',
@@ -5,9 +7,10 @@ const person = {
   '1last': '1Last',
   gadgets: {
     laptop: 'Macbook',
-    smartphone: 'iPhone'
+    smartphone: 'iPhone',
   },
-  777: '777 Value'
+  777: '777 Value',
+  newKey: 'Something new',
 };
 
 const key = 'first';
