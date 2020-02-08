@@ -1,11 +1,10 @@
 const turt = document.querySelector('.turt');
-
 console.log(turt.style.left);
 let x = 0;
 let y = 0;
 let isBack = false;
 let rotate = 0;
-
+/* eslint-disable */
 function handleKey(e) {
   if (!e.key.includes('Arrow')) return;
 
