@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>
+      Local Storage
+    </title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
+  <body>
+    <script>
+      const person = {
+        name: 'Igor',
+        age: 100,
+      };
+      localStorage.setItem('Кіт', 'Барсик');
+      // var cat = localStorage.getItem('Кіт');
+      console.log(localStorage.getItem('Кіт'));
+
+      const tasks = ['task1', 'task2', 'task3'];
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+
+      const tasksFromLS = JSON.parse(localStorage.getItem('tasks'));
+      console.log(tasksFromLS);
+    </script>
+  </body>
+</html>

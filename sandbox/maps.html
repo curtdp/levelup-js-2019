@@ -11,28 +11,69 @@
     <script>
       const person1 = {
         name: 'Igor',
-        age: 100
+        age: 100,
       };
 
-      const myMap = new Map();
+      const json = JSON.stringify(person1);
+      console.log(JSON.parse(json));
 
+      const arr = ['Hello World!!!', ['Coool', 'JS']];
+
+      for (const first of arr) {
+        for (const key of first) {
+          console.log(key);
+        }
+      }
+
+      const person2 = {
+        name: 'Vasya',
+        age: 100,
+      };
+      // Массивы-словари
+      // const dataBind = [
+      //   [person1, person2],
+      //   [sdf, sdf2],
+      //   [xcv, sdf2],
+      // ];
+
+      // Параллельные массивы
+      // let keyArr = [person1, sdf, xcv];
+      // let valArr = [person2, sdf2, sdf2];
+
+      // let myPair = [keyArr[0], valArr[0]]
+
+      const myMap = new Map();
       myMap.set('name', 'igor');
-      myMap.set(100, 'This is a number');
-      myMap.set(person1, 'Really cool');
+      myMap.set(100, 'This is NUMBER');
+      myMap.set(person1, 'Really Cool');
 
       console.log(myMap);
 
       console.log(myMap.get(person1));
 
-      const score = 100;
+      const score = 200;
       const prizes = new Map();
-      prizes.set(100, 'Bear');
       prizes.set(200, 'Duck');
+      prizes.set({ value: 100 }, 'Bear');
       prizes.set(300, 'Car');
+      prizes.set('[object Object]":"Bear1"', 'Car2');
+
+      const objFromMap = Object.fromEntries(prizes);
+
+      const jsonFromMap = JSON.stringify(objFromMap);
+
+      let prize = 'Hello';
+      for (const [score, prize] of prizes) {
+        console.log(score, prize);
+      }
+      console.log(prize);
+
       console.log(`You win a ${prizes.get(score)}`);
-      // myMap.has()
-      // myMap.delete()
-      // myMap.size
+
+      console.log(myMap.has(100));
+      myMap.delete('name');
+      console.log(myMap.size);
+      console.log(jsonFromMap);
     </script>
   </body>
 </html>
