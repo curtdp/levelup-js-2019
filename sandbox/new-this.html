@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>New This</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
+  <body>
+    <button class="one">One</button>
+    <button class="two">Two</button>
+    <script>
+      const myDate = new Date('August 11, 2025');
+      console.dir(myDate);
+      console.dir(myDate.getFullYear());
+
+      const names = ['igor', 'oleg'];
+      const igor = { name: 'igor' };
+
+      const names2 = new Array('igor', 'oleg');
+      const igor2 = new Object({ name: 'igor' });
+
+      const span = document.createElement('span');
+
+      function Pizza(toppings = [], customer) {
+        console.log('Making a pizza');
+
+        this.toppings = toppings;
+        this.customer = customer;
+
+        // https://www.paulirish.com/2009/random-hex-color-code-snippets/
+        this.id = Math.floor(Math.random() * 16777215).toString(16);
+        this.slices = 10;
+        this.size = 'medium';
+
+        // this.eat = function() {
+        //   if (this.slices > 0) {
+        //     this.slices = this.slices - 1;
+        //     console.log(
+        //       `ням теперь у вас осталось ${this.slices} кусочков пиццы`,
+        //     );
+        //     return this.slices;
+        //   } else {
+        //     console.log(`простите больше кусочков не осталось`);
+        //   }
+        // };
+      }
+
+      Pizza.prototype.eat = function() {
+        if (this.slices > 0) {
+          this.slices = this.slices - 1;
+          console.log(
+            `ням теперь у вас осталось ${this.slices} кусочков пиццы`,
+          );
+          return this.slices;
+        } else {
+          console.log(`простите больше кусочков не осталось`);
+        }
+      };
+
+      Pizza.prototype.describe = function() {
+        return `this pizza is for ${
+          this.customer
+        } with toppings ${this.toppings.join(', ')} and ${this.slices} left`;
+      };
+
+      Pizza.prototype.size = 'Large';
+
+      const pepperoniPizza = new Pizza(['pepperoni'], 'igor');
+      const canadianPizza = new Pizza(
+        ['pepperoni', 'mushrooms', 'onion'],
+        'vasya',
+      );
+
+      console.log(pepperoniPizza);
+      console.log(canadianPizza);
+      // this
+
+      const button1 = document.querySelector('.one');
+      const button2 = document.querySelector('.two');
+
+      // function tellMeAboutTheButton() {
+      //   console.log('outside', this);
+      //   setTimeout(function() {
+      //     console.log('inside', this);
+      //     this.textContent = 'You clicked Me';
+      //   }, 1000);
+      // }
+
+      // Вариант с замыканием
+
+      // function tellMeAboutTheButton() {
+      //   console.log('outside', this);
+      //   const that = this;
+      //   setTimeout(function() {
+      //     console.log('inside', this);
+      //     that.textContent = 'You clicked Me';
+      //   }, 1000);
+      // }
+
+      // Вариант со стрелочной функцией
+
+      function tellMeAboutTheButton() {
+        console.log('outside', this);
+        setTimeout(() => {
+          console.log('inside', this);
+          this.textContent = 'You clicked Me';
+        }, 1000);
+      }
+
+      button1.addEventListener('click', tellMeAboutTheButton);
+      button2.addEventListener('click', tellMeAboutTheButton);
+    </script>
+  </body>
+</html>
