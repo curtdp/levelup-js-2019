@@ -10,10 +10,17 @@
   <body>
     <button class="one">One</button>
     <button class="two">Two</button>
+    <button class="go">GO</button>
+    <button class="cancel">Cancel</button>
     <script>
+      let num = new Number(5);
+      console.log(num);
+
+      let num1 = 15;
+      console.log(num1.toString(16));
+
       const myDate = new Date('August 11, 2025');
-      console.dir(myDate);
-      console.dir(myDate.getFullYear());
+      console.log(myDate.toLocaleDateString('ru-Latn', { weekday: 'long' }));
 
       const names = ['igor', 'oleg'];
       const igor = { name: 'igor' };
@@ -24,12 +31,13 @@
       const span = document.createElement('span');
 
       function Pizza(toppings = [], customer) {
-        console.log('Making a pizza');
+        // {}
+        // {}.constructor = Pizza;
+        console.log('Making Pizza');
 
         this.toppings = toppings;
         this.customer = customer;
 
-        // https://www.paulirish.com/2009/random-hex-color-code-snippets/
         this.id = Math.floor(Math.random() * 16777215).toString(16);
         this.slices = 10;
         this.size = 'medium';
@@ -37,12 +45,10 @@
         // this.eat = function() {
         //   if (this.slices > 0) {
         //     this.slices = this.slices - 1;
-        //     console.log(
-        //       `ням теперь у вас осталось ${this.slices} кусочков пиццы`,
-        //     );
+        //     console.log(`Ням. Теперь у вас осталось ${this.slices}`);
         //     return this.slices;
         //   } else {
-        //     console.log(`простите больше кусочков не осталось`);
+        //     console.log(`простите, больше не осталось кусочков`);
         //   }
         // };
       }
@@ -50,67 +56,115 @@
       Pizza.prototype.eat = function() {
         if (this.slices > 0) {
           this.slices = this.slices - 1;
-          console.log(
-            `ням теперь у вас осталось ${this.slices} кусочков пиццы`,
-          );
+          console.log(`Ням. Теперь у вас осталось ${this.slices}`);
           return this.slices;
         } else {
-          console.log(`простите больше кусочков не осталось`);
+          console.log(`простите, больше не осталось кусочков`);
         }
       };
 
       Pizza.prototype.describe = function() {
-        return `this pizza is for ${
+        return `This pizza is for ${
           this.customer
-        } with toppings ${this.toppings.join(', ')} and ${this.slices} left`;
+        } with toppings ${this.toppings.join(', ')} and ${
+          this.slices
+        } slices left`;
       };
 
       Pizza.prototype.size = 'Large';
 
-      const pepperoniPizza = new Pizza(['pepperoni'], 'igor');
+      const pepperoniPizza = new Pizza(['pepperoni'], 'Igor');
       const canadianPizza = new Pizza(
         ['pepperoni', 'mushrooms', 'onion'],
-        'vasya',
+        'Oleg',
       );
 
       console.log(pepperoniPizza);
       console.log(canadianPizza);
-      // this
 
       const button1 = document.querySelector('.one');
       const button2 = document.querySelector('.two');
+      const go = document.querySelector('.go');
+      const cancel = document.querySelector('.cancel');
 
       // function tellMeAboutTheButton() {
-      //   console.log('outside', this);
+      //   console.log('outsude ', this);
+
       //   setTimeout(function() {
-      //     console.log('inside', this);
-      //     this.textContent = 'You clicked Me';
+      //     console.log('inside ', this);
+      //     this.textContent = 'You clicked me';
       //   }, 1000);
       // }
 
-      // Вариант с замыканием
-
+      // // Вариант с замыканием
       // function tellMeAboutTheButton() {
-      //   console.log('outside', this);
-      //   const that = this;
+      //   console.log('outsude ', this);
+
+      //   let self = this;
       //   setTimeout(function() {
-      //     console.log('inside', this);
-      //     that.textContent = 'You clicked Me';
+      //     console.log('inside ', this);
+      //     self.textContent = 'You clicked me';
       //   }, 1000);
       // }
 
-      // Вариант со стрелочной функцией
+      // // Вариант со стрелочной функцией
+
+      // function tellMeAboutTheButton() {
+      //   console.log('outsude ', this);
+      //   setTimeout(() => {
+      //     console.log('inside ', this);
+      //     this.textContent = 'You clicked me';
+      //   }, 1000);
+      // }
+
+      // Bind Call Apply методы функций
 
       function tellMeAboutTheButton() {
-        console.log('outside', this);
-        setTimeout(() => {
-          console.log('inside', this);
-          this.textContent = 'You clicked Me';
-        }, 1000);
+        console.log('outsude ', this);
+        setTimeout(
+          function() {
+            console.log('inside ', this);
+            this.textContent = 'You clicked me';
+          }.bind(this),
+          1000,
+        );
       }
+
+      let buttons = document.querySelectorAll('button');
+
+      let foundBtn = Array.prototype.find.call(buttons, item => {
+        return item.textContent === 'Two';
+      });
+      let foundBtn2 = [].find.call(buttons, item => {
+        return item.textContent === 'One';
+      });
+
+      // fn.call(this, qwe, qwe, qwe, er, df);
+      // fn.apply(this, [qwe, qwe, qwe, er, df]);
+
+      // let newFn = fn.bind(this);
+
+      // newFn(sdf, sdf, sdf, df);
 
       button1.addEventListener('click', tellMeAboutTheButton);
       button2.addEventListener('click', tellMeAboutTheButton);
+      go.addEventListener('click', runWithTimeout);
+      cancel.addEventListener('click', cancelTimeout);
+
+      let timeout;
+      function runWithTimeout() {
+        timeout = setTimeout(function() {
+          console.log('Hi');
+        }, 1000);
+      }
+
+      function cancelTimeout() {
+        clearTimeout(timeout);
+      }
+
+      // const timeout = setInterval(function() {
+      //   console.log('Hello');
+      // }, 1000);
     </script>
   </body>
 </html>
