@@ -4,30 +4,27 @@ function Gallery(gallery) {
   }
 
   this.gallery = gallery;
-
+  // select the elements we need
   this.images = Array.from(gallery.querySelectorAll('img'));
-
   this.modal = document.querySelector('.modal');
-
   this.prevButton = this.modal.querySelector('.prev');
   this.nextButton = this.modal.querySelector('.next');
 
-  // bind out methods to the instance when we need them
+  // bind our methods to the instance when we need then
   this.showNextImage = this.showNextImage.bind(this);
   this.showPreviousImage = this.showPreviousImage.bind(this);
-  this.handleKeyPress = this.handleKeyPress.bind(this);
+  this.handleKeyUp = this.handleKeyUp.bind(this);
   this.handleClickOutside = this.handleClickOutside.bind(this);
 
-  // Event listeners
+  // Event Listeners
 
-  this.images.forEach(image => {
-    image.addEventListener('click', e => this.showImage(e.currentTarget));
-  });
+  this.images.forEach(image =>
+    image.addEventListener('click', e => this.showImage(e.currentTarget)),
+  );
 
   this.images.forEach(image => {
     image.addEventListener('keyup', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
+      if (e.key === 'Enter' || e.key === ' ') {
         this.showImage(e.currentTarget);
       }
     });
@@ -35,39 +32,23 @@ function Gallery(gallery) {
 
   this.modal.addEventListener('click', this.handleClickOutside);
 
+  // 1 проблема, с несколькими галереями эти слушатели будут присваиваться дважды, перенести в openModal
   // window.addEventListener('keyup', handleKeyPress);
   // nextButton.addEventListener('click', showNextImage);
-  // prevButton.addEventListener('click', showPreviousImage);
 }
 
-Gallery.prototype.showImage = function(el) {
-  if (!el) {
-    console.info('no image to show');
-    return;
-  }
-
-  console.log(el);
-
-  this.modal.querySelector('img').src = el.src;
-  this.modal.querySelector('h2').textContent = el.title;
-  this.modal.querySelector('p').textContent = el.dataset.description;
-
-  this.currentImage = el;
-
-  this.openModal();
-};
-
 Gallery.prototype.openModal = function() {
-  if (this.modal.matches('.open')) {
-    console.log('modal already opened');
+  console.info('opening modal...');
+  if (this.modal.matches('open')) {
+    console.info('modal already open');
     return;
   }
-  console.log('Opening modal...');
-
   this.modal.classList.add('open');
 
+  // 2
   // Event Listeners
-  window.addEventListener('keyup', this.handleKeyPress);
+
+  window.addEventListener('keyup', this.handleKeyUp);
   this.nextButton.addEventListener('click', this.showNextImage);
   this.prevButton.addEventListener('click', this.showPreviousImage);
 };
@@ -75,25 +56,28 @@ Gallery.prototype.openModal = function() {
 Gallery.prototype.closeModal = function() {
   this.modal.classList.remove('open');
 
-  window.removeEventListener('keyup', this.handleKeyPress);
+  // TODO: add event listeners for clicks and keyboard
+
+  // 2
+  // Event Listeners
+
+  window.removeEventListener('keyup', this.handleKeyUp);
   this.nextButton.removeEventListener('click', this.showNextImage);
   this.prevButton.removeEventListener('click', this.showPreviousImage);
 };
 
 Gallery.prototype.handleClickOutside = function(e) {
-  // console.log(e.target, e.currentTarget);
   if (e.target === e.currentTarget) {
     this.closeModal();
   }
 };
 
-Gallery.prototype.handleKeyPress = function(e) {
-  console.log('handle key press');
+Gallery.prototype.handleKeyUp = function(e) {
+  console.log('KeyUp Handling');
   if (e.key === 'Escape') {
     this.closeModal();
     return;
   }
-
   if (e.key === 'ArrowRight') {
     this.showNextImage();
     return;
@@ -105,15 +89,36 @@ Gallery.prototype.handleKeyPress = function(e) {
 };
 
 Gallery.prototype.showNextImage = function() {
+  console.log('ShowingNextImage');
   this.showImage(
     this.currentImage.nextElementSibling || this.gallery.firstElementChild,
   );
 };
+
 Gallery.prototype.showPreviousImage = function() {
   this.showImage(
     this.currentImage.previousElementSibling || this.gallery.lastElementChild,
   );
 };
+
+Gallery.prototype.showImage = function(el) {
+  if (!el) {
+    console.info('no image to show');
+    return;
+  }
+
+  // update the modal with this info
+
+  console.log(el);
+
+  this.modal.querySelector('img').src = el.src;
+  this.modal.querySelector('h2').textContent = el.title;
+  this.modal.querySelector('p').textContent = el.dataset.description;
+  this.currentImage = el;
+  this.openModal();
+};
+
+// Use it on the page
 
 const gallery1 = new Gallery(document.querySelector('.gallery1'));
 const gallery2 = new Gallery(document.querySelector('.gallery2'));
