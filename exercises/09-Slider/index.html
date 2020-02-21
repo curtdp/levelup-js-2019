@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Slider</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="bg-green-500 mx-auto max-w-screen-lg">
+    <h1 class="text-4xl font-semibold mt-4">Slider</h1>
+    <div class="slider">
+      <div class="slides bg-red-500">
+        <div class="slide">slide 1</div>
+        <div class="slide">slide 2</div>
+        <div class="slide current">slide 3</div>
+        <div class="slide">slide 4</div>
+        <div class="slide">slide 5</div>
+        <div class="slide">slide 6</div>
+        <div class="slide">slide 7</div>
+        <div class="slide">slide 8</div>
+        <div class="slide">slide 9</div>
+        <div class="slide">slide 10</div>
+      </div>
+      <div class="controls mt-4">
+        <button class="prevBtn bg-yellow-300 p-2">
+          ← prev
+        </button>
+        <button class="nextBtn bg-yellow-300 p-2">
+          next →
+        </button>
+      </div>
+    </div>
+    <div class="photo-slider mt-4">
+      <div class="slides bg-pink-500">
+        <div class="slide">
+          <img
+            class="object-cover"
+            src="https://images.unsplash.com/photo-1542091607-f2c384a6af13?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+          />
+        </div>
+        <div class="slide">
+          <img
+            class="object-cover"
+            src="https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjk2NTMwfQ&auto=format&fit=crop&w=1000&q=80"
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+            alt=""
+            srcset=""
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1495469118433-d4dbeb29963a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+            alt=""
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1488841714725-bb4c32d1ac94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+            alt=""
+          />
+        </div>
+        <div class="slide">
+          <img
+            src="https://images.unsplash.com/photo-1495121553079-4c61bcce1894?ixlib=rb-1.2.1&auto=format&fit=crop&w=929&q=80"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="controls mt-4">
+        <button class="prevBtn bg-yellow-300 p-2">
+          ← prev
+        </button>
+        <button class="nextBtn bg-yellow-300 p-2">
+          next →
+        </button>
+      </div>
+    </div>
+    <script src="./src/slider.js"></script>
+  </body>
+</html>
