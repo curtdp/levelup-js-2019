@@ -1,8 +1,7 @@
 function Slider(slider) {
   if (!(slider instanceof Element)) {
-    throw new Error('No slider passed in');
+    throw Error('No Slider passed in');
   }
-
   let current;
   let prev;
   let next;
@@ -13,7 +12,7 @@ function Slider(slider) {
   const nextBtn = slider.querySelector('.nextBtn');
 
   function startSlider() {
-    current = slides.querySelector('.current') || slides.firstElementChild;
+    current = slider.querySelector('.current') || slides.firstElementChild;
     prev = current.previousElementSibling || slides.lastElementChild;
     next = current.nextElementSibling || slides.firstElementChild;
   }
@@ -43,14 +42,14 @@ function Slider(slider) {
         next.nextElementSibling || slides.firstElementChild,
       ];
     }
-
     applyClasses();
+    console.log({ prev, current, next });
   }
 
   startSlider();
   applyClasses();
-  console.log(current);
 
+  // Event listeners
   prevBtn.addEventListener('click', () => move('back'));
   nextBtn.addEventListener('click', move);
 }

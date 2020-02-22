@@ -2,6 +2,10 @@
 
 @tailwind components;
 
+:root {
+  --pink: hotpink;
+}
+
 .slides {
   width: 800px;
   height: 500px;
