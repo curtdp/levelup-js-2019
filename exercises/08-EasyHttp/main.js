@@ -8,6 +8,7 @@ getBtn.addEventListener('click', function() {
     data,
   ) {
     if (err) {
+      console.error(err);
       return;
     }
 

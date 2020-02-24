@@ -1,13 +1,9 @@
 {
-  "extends": [
-    "plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["plugin:prettier/recommended"],
+  "plugins": ["prettier"],
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "script",
+    "sourceType": "module",
     "ecmaFeatures": {}
   },
   "rules": {

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Event Loop</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 2rem;
+      }
+      .go {
+        padding: 5rem;
+        width: 15rem;
+        height: 15rem;
+        background: white;
+        transition: all 0.2s;
+      }
+      .circle {
+        border-radius: 50%;
+      }
+      .red {
+        background-color: red;
+      }
+      .purple {
+        background-color: purple;
+      }
+      .fadeOut {
+        opacity: 0;
+      }
+    </style>
+    <div class="go">Click Me!</div>
+
+    <script>
+      const go = document.querySelector('.go');
+
+      go.addEventListener('click', function() {
+        // 1. Change text to Go! when clicked
+        go.textContent = 'Go!';
+        setTimeout(function() {
+          // 2. Make it a circle after 2 seconds
+          go.classList.add('circle');
+          setTimeout(function() {
+            // 3. Make it red after 0.5 seconds
+            go.classList.add('red');
+            setTimeout(function() {
+              // 4. Make it square afger 0.25 seconds
+              go.classList.remove('circle');
+              setTimeout(function() {
+                // 5. Make it purple after 0.3 seconds
+                go.classList.remove('red');
+                go.classList.add('purple');
+                setTimeout(function() {
+                  // 6. Fade out after 0.5 seconds
+                  go.classList.add('fadeOut');
+                }, 300);
+              }, 300);
+            }, 250);
+          }, 500);
+        }, 2000);
+      });
+      // finish);
+    </script>
+  </body>
+</html>
