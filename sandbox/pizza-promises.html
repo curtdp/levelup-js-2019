@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pizza</title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
+  <body>
+    <script>
+      function makePizza(toppings = []) {
+        return new Promise((resolve, reject) => {
+          const soldOutTopping = 'pepperoni';
+
+          if (toppings.find(topping => topping === soldOutTopping)) {
+            reject(`We cant bake pizza with topping ${soldOutTopping}`);
+          }
+
+          setTimeout(() => {
+            resolve(
+              `You have your pizza 🍕 with toppings ${toppings.join(', ')}`,
+            );
+          }, 500 * toppings.length);
+        });
+      }
+
+      async function makeAllPizzas2() {
+        try {
+          console.log(await makePizza(['feta', 'pineapple']));
+          console.log(
+            await makePizza(['pepperoni', 'ham', 'onion', 'mushrooms']),
+          );
+          console.log(await makePizza(['formaggi']));
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      // const pizzaPromise1 = makePizza(['feta', 'pineapple']);
+      // const pizzaPromise2 = makePizza(['ham', 'onion', 'mushrooms']);
+      // const pizzaPromise3 = makePizza(['formaggi']);
+
+      console.log('making pizza');
+
+      // const makeAllPizzas = makePizza(['feta', 'pineapple'])
+      //   .then(result => {
+      //     console.log(result);
+      //     return makePizza(['pepperoni', 'ham', 'onion', 'mushrooms']);
+      //   })
+      //   .then(result => {
+      //     console.log(result);
+      //     return makePizza(['formaggi']);
+      //   })
+      //   .then(result => {
+      //     console.log(result);
+      //   })
+      //   .catch(err => {
+      //     console.error(err);
+      //   });
+
+      // pizzaPromise1
+      //   .then(result => {
+      //     console.log(result);
+      //   })
+      //   .catch(err => console.error(err));
+      // pizzaPromise2.then(result => {
+      //   console.log(result);
+      // });
+      // pizzaPromise3.then(result => {
+      //   console.log(result);
+      // });
+      // Promise.all([pizzaPromise1, pizzaPromise2, pizzaPromise3]).then(result =>
+      //   console.log(result),
+      // );
+      // Promise.race([pizzaPromise1, pizzaPromise2, pizzaPromise3]).then(result =>
+      //   console.log('Your first pizza: ', result),
+      // );
+    </script>
+  </body>
+</html>
