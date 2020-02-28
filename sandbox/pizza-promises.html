@@ -13,29 +13,59 @@
         return new Promise((resolve, reject) => {
           const soldOutTopping = 'pepperoni';
 
+          // Reject if people try with pepperoni
           if (toppings.find(topping => topping === soldOutTopping)) {
             reject(`We cant bake pizza with topping ${soldOutTopping}`);
           }
 
+          const amountOfTimeToBake = 500 + toppings.length * 200;
+
           setTimeout(() => {
             resolve(
-              `You have your pizza 🍕 with toppings ${toppings.join(', ')}`,
+              `Here is your pizza 🍕 with the toppings ${toppings.join(', ')}`,
             );
-          }, 500 * toppings.length);
+          }, amountOfTimeToBake);
         });
       }
 
-      async function makeAllPizzas2() {
-        try {
-          console.log(await makePizza(['feta', 'pineapple']));
-          console.log(
-            await makePizza(['pepperoni', 'ham', 'onion', 'mushrooms']),
-          );
-          console.log(await makePizza(['formaggi']));
-        } catch (err) {
-          console.error(err);
-        }
+      // async function makeAllPizzas2() {
+      //   try {
+      //     console.log(await makePizza(['feta', 'pineapple']));
+      //     console.log(
+      //       await makePizza(['pepperoni', 'ham', 'onion', 'mushrooms']),
+      //     );
+      //     console.log(await makePizza(['formaggi']));
+      //   } catch (err) {
+      //     console.error(err);
+      //   }
+      // }
+
+      function handleError(error) {
+        console.log('Oh no!');
+        console.error(error);
       }
+
+      async function go() {
+        window.doesNotExists();
+        const pizza = await makePizza(['pepperoni']);
+        console.log(pizza);
+      }
+
+      go().catch(handleError);
+
+      // Higher Order Function
+
+      function makeSafe(fn, handleError) {
+        return function() {
+          fn.catch(handleError);
+        };
+      }
+
+      // go(); // unsafe будут ошибки
+
+      const safeGo = makeSafe(go, errorHandler);
+
+      safeGo();
 
       // const pizzaPromise1 = makePizza(['feta', 'pineapple']);
       // const pizzaPromise2 = makePizza(['ham', 'onion', 'mushrooms']);
