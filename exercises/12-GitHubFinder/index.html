@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Github Finder</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-blue-700">
+      <div
+        class="max-w-screen-md mx-auto py-4 text-white text-2xl font-semibold"
+      >
+        GitHub Finder
+      </div>
+    </div>
+    <div class="max-w-screen-md mx-auto">
+      <div
+        class="bg-red-500 text-red-100 border-red-800 rounded px-4 py-2 mt-4"
+      >
+        User not found
+      </div>
+      <div class="mt-4 p-4 border rounded-md border-gray-400">
+        <h2 class="text-4xl font-bold text-gray-800">Search Github Users</h2>
+        <p class="text-xl text-gray-600">
+          Enter a username to fetch a users profile info and repos
+        </p>
+        <input
+          type="text"
+          class="border border-gray-400 rounded w-full px-4 py-2 mt-2 outline-none focus:shadow-outline"
+        />
+      </div>
+      <div class="mt-4 border border-gray-400 p-4 rounded flex">
+        <div class="w-1/4 mr-4">
+          <div>
+            avatar
+          </div>
+          <button class="bg-blue-600 text-white rounded-lg p-2 w-full">
+            View Profile
+          </button>
+        </div>
+        <div class="w-3/4">
+          <div>
+            <span
+              class="bg-purple-600 py-1 px-3 rounded mr-2 text-white font-thin"
+              >Public Repos: 88</span
+            >
+            <span
+              class="bg-gray-600 py-1 px-3 rounded mr-2 text-white font-thin"
+              >Public Gists: 2</span
+            >
+            <span
+              class="bg-green-600 py-1 px-3 rounded mr-2 text-white font-thin"
+              >Followers: 8</span
+            >
+            <span
+              class="bg-teal-600 py-1 px-3 rounded mr-2 text-white font-thin"
+              >Following: 52</span
+            >
+          </div>
+          <div class="rounded border mt-2 overflow-hidden">
+            <div class="px-4 py-2 border-b">Company: MS</div>
+            <div class="px-4 py-2 border-b">
+              Website/blog: https://example.com
+            </div>
+            <div class="px-4 py-2 border-b">
+              Location: Dnipro
+            </div>
+            <div class="px-4 py-2">
+              Member Since: 2009
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="font-bold text-3xl mt-2 text-gray-800">Last Repos</h2>
+      <div>
+        <div class="border border-gray-400 rounded p-4 flex items-center">
+          <a href="#" class="w-2/4 block text-blue-700 underline"
+            >Levelup FrontEnd</a
+          >
+          <div class="w-2/4 flex">
+            <div class="rounded bg-blue-800 text-white px-4 py-1 mr-2">
+              Stars: 0
+            </div>
+            <div class="rounded bg-green-800 text-white px-4 py-1 mr-2">
+              Watchers: 0
+            </div>
+            <div class="rounded bg-orange-600 text-white px-4 py-1">
+              Forks: 0
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
