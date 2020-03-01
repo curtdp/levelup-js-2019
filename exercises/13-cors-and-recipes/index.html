@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CORS and Recipes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-orange-700 p-8 text-2xl">
+    <style>
+      .recipes {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 20px;
+      }
+    </style>
+    <div class="max-w-screen-lg mx-auto bg-white p-8 shadow-xl rounded-lg">
+      <h1 class="text-4xl font-semibold text-gray-900">Recipe Search</h1>
+      <form class="search">
+        <input
+          type="text"
+          name="query"
+          autocomplete="off"
+          class="border rounded w-full px-4 py-2 focus:outline-none focus:shadow-outline shadow-inner"
+          value="pizza"
+        />
+        <button
+          name="submit"
+          class="mt-4 bg-pink-700 font-semibold text-white rounded w-full px-4 py-2 focus:outline-none focus:shadow-outline shadow-inner disabled:opacity-75"
+        >
+          Submit
+        </button>
+      </form>
+      <div class="recipes mt-4"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
