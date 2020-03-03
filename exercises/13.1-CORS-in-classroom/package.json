@@ -1,0 +1,17 @@
+{
+  "name": "13.1-CORS-in-classroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^1.12.4",
+    "tailwindcss": "^1.2.0"
+  },
+  "browserslist": "> 10%"
+}
