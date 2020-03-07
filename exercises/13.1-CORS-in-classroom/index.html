@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <link rel="stylesheet" href="style.css" />
+  <body class="bg-orange-700 p-8 text-2xl">
+    <style>
+      .recipes {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 1rem;
+      }
+    </style>
+    <div class="max-w-screen-lg mx-auto bg-white p-8 shadow-xl rounded-lg">
+      <h1 class="text-4xl font-semibold text-gray-900">Recipe Super Search</h1>
+      <form>
+        <input
+          type="text"
+          name="query"
+          autocomplete="off"
+          value="pizza"
+          class="search border rounded w-full px-4 py-2 mt-2 shadow-inner focus:shadow-outline"
+        />
+
+        <input type="checkbox" name="garlic" id="garlic" />
+        <label for="garlic">garlic</label>
+
+        <button
+          name="submit"
+          class="w-full bg-pink-700 rounded mt-2 py-2 text-pink-100 disabled:opacity-50"
+        >
+          Submit
+        </button>
+      </form>
+      <div class="recipes mt-4"></div>
+      <!-- <a href="tailwind.html">Tailwindcss</a> -->
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
