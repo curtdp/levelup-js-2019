@@ -1,0 +1,10 @@
+$mainColor: goldenrod;
+
+body {
+  h1 {
+    font-size: 3rem;
+  }
+  background-color: $mainColor;
+  font-weight: bold;
+  margin: 1rem;
+}
