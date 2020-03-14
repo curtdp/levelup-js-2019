@@ -1,6 +1,6 @@
 import returnHi from './utils.js';
-import { person as igor } from './igor.js';
-const name = 'Igor';
+// import helicopter, * as igorObj from './igor.js';
+import { person as superPerson, car as superCar } from './igor.js';
 
-console.log(returnHi(name));
-console.log(returnHi(igor.age));
+console.log(returnHi(superCar.name));
+console.log(returnHi(superPerson.name));
