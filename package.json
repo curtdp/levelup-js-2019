@@ -10,12 +10,23 @@
   "author": "Igor Oliinyk",
   "license": "ISC",
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "jsdom-quokka-plugin": "^1.0.15"
-  }
+    "jsdom-quokka-plugin": "^1.0.15",
+    "node-fetch": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtdp/levelup-js-2019.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/curtdp/levelup-js-2019/issues"
+  },
+  "homepage": "https://github.com/curtdp/levelup-js-2019#readme"
 }

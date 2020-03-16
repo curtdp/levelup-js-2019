@@ -1,0 +1,29 @@
+{
+  "name": "22-npm-packages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html --experimental-scope-hoisting"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "await-to-js": "^2.1.1",
+    "axios": "^0.19.2",
+    "date-fns": "^2.11.0",
+    "date-fns-tz": "^1.0.10",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.15",
+    "waait": "^1.0.5"
+  },
+  "browserslist": [
+    "last 1 chrome versions"
+  ]
+}
