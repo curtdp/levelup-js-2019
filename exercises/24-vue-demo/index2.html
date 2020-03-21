@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+      <input
+        type="text"
+        :value="message"
+        @input="updateMessage('Новое сообщение', 2, $event)"
+      />
+      <ul>
+        <todo-item v-for="item in makeThings" :todo="item"></todo-item>
+      </ul>
+    </div>
+    <script src="./vue.js"></script>
+    <script type="module">
+      Vue.component('todo-item', {
+        template:
+          '<li>Задача {{ todo.name }} <button @click="completed">Done!</button></li>',
+        props: ['todo'],
+        methods: {
+          completed() {
+            alert('Super!');
+          },
+        },
+      });
+
+      const app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Это наше сообщение',
+          makeThings: [
+            { name: 'Помыть окно' },
+            { name: 'Помыть машину' },
+            { name: 'Купить кофе' },
+          ],
+        },
+        methods: {
+          updateMessage(newMessage, multiplier = 1, event) {
+            this.message = newMessage.repeat(multiplier);
+            console.log(event);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

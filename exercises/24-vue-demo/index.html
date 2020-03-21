@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <Persona></Persona>
+      <todo-item></todo-item>
+      <button @click="seen = !seen">Показать/скрыть заголвок</button>
+      <h1 v-show="seen">Заголовок видно</h1>
+      <Persona></Persona>
+      <ul>
+        <li
+          v-for="(item, i) in products"
+          :key="i"
+          :title="`Привет ${i} ${item.name}`"
+        >
+          {{ item.name }} {{ item.count }}
+          <button @click="item.count++">Add</button>
+        </li>
+      </ul>
+      <p>Сумма продуктов {{ sum }}</p>
+      <h2>Шутка</h2>
+      <p>{{ joke }}</p>
+      <button v-on:click="getJoke">Get new joke</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script type="module">
+      import Persona, { a, changeA } from './counter.js';
+      console.log(a);
+      changeA(10);
+      console.log(a);
+
+      Vue.component('todo-item', {
+        template: '<p>Новый элемент туду списка</p>',
+      });
+      const app = new Vue({
+        el: '#app',
+        data: {
+          seen: true,
+          products: [
+            {
+              name: 'Автомобиль Тесла',
+              count: 0,
+            },
+            {
+              name: 'Автомобиль Fiat',
+              count: 0,
+            },
+            {
+              name: 'Автомобиль Nissan',
+              count: 0,
+            },
+          ],
+          joke: '',
+        },
+        computed: {
+          sum() {
+            return this.products.reduce((acc, item) => {
+              return acc + item.count;
+            }, 0);
+          },
+        },
+        methods: {
+          async getJoke() {
+            const res = await fetch('https://icanhazdadjoke.com/', {
+              headers: {
+                Accept: 'application/json',
+              },
+            });
+            const result = await res.json();
+
+            this.joke = result.joke;
+          },
+        },
+        async created() {
+          this.getJoke();
+        },
+        components: {
+          Persona,
+        },
+      });
+    </script>
+  </body>
+</html>
