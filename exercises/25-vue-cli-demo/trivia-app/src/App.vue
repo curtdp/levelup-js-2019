@@ -1,6 +1,5 @@
 <template>
   <div id="app" class="container mx-auto">
-    <a href="https://google.com">Ссылка</a>
     <Modal
       @goNext="getOneQuestion"
       :isCorrect="isCorrect"
@@ -13,9 +12,9 @@
     <div class="max-w-sm mx-auto">
       <div class="flex items-center justify-between">
         <div>
-          <label for="category" class="mb-2 block">Select category</label>
+          <label for="category" class="block mb-2">Select category</label>
           <select
-            class="border rounded w-4/5"
+            class="w-4/5 border rounded"
             name="category"
             id="category"
             v-model="selectedCategory"
@@ -24,8 +23,7 @@
               v-for="category in categories"
               :key="category.id"
               :value="category.id"
-              >{{ category.name }}</option
-            >
+            >{{ category.name }}</option>
           </select>
         </div>
         <!-- следим за результатами игры -->
@@ -37,7 +35,7 @@
       <!-- Вопросы -->
       <div v-if="question">
         <h2 class="text-4xl" v-html="question.question"></h2>
-        <div class="border rounded-md p-4 shadow-lg">
+        <div class="p-4 border rounded-md shadow-lg">
           <AnswerItem
             @answerClick="handleAnswerClick"
             v-for="(answer, index) in answerVariants"
@@ -54,10 +52,8 @@
       <div class="mt-5 text-right">
         <button
           @click="getOneQuestion"
-          class="bg-green-200 p-2 text-xs text-green-500 border border-green hover:bg-green-lightest rounded"
-        >
-          Go to next question 👉
-        </button>
+          class="p-2 text-xs text-green-500 bg-green-200 border rounded border-green hover:bg-green-lightest"
+        >Go to next question 👉</button>
       </div>
     </div>
   </div>
@@ -123,8 +119,8 @@ export default {
       }
 
       fetch(url)
-        .then(resp => resp.json())
-        .then(data => {
+        .then((resp) => resp.json())
+        .then((data) => {
           this.question = data.results[0];
         });
     },

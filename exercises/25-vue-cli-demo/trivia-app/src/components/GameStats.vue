@@ -1,12 +1,12 @@
 <template>
-  <div class="text-4xl flex mt-4 md:mt-0 justify-end">
+  <div class="flex justify-end mt-4 text-4xl md:mt-0">
     <div class="px-4 text-right">
       <span class="text-red-700">{{ countOfWrongAnswers }}</span>
-      <div class="text-red-700 text-sm">wrong</div>
+      <div class="text-sm text-red-700">wrong</div>
     </div>
     <div class="px-4 text-right">
       <span class="text-green-700">{{ countOfRightAnswers }}</span>
-      <div class="text-green-700 text-sm">correct</div>
+      <div class="text-sm text-green-700">correct</div>
     </div>
   </div>
 </template>
