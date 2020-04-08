@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>DatePicker</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/css/pikaday.min.css"
+      integrity="sha256-+RIb33VoW3hHdfmp0+G4FrGAxzlKBXiwo6thzduwZdU="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./src/assets/css/app.css" />
+  </head>
+  <body>
+    <div class="min-h-screen bg-grey-darker p-8">
+      <div class="max-w-sm mx-auto">
+        <div class="card">
+          <label class="block">
+            <span class="form-label mb-2">Select a date</span>
+            <input
+              type="text"
+              class="form-input"
+              id="datepicker"
+              placeholder="YYYY-MM-DD"
+            />
+          </label>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"
+      integrity="sha256-zG8v+NWiZxmjNi+CvUYnZwKtHzFtdO8cAKUIdB8+U9I="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.8.0/pikaday.min.js"
+      integrity="sha256-+B1vOR24Jpk4oWE/+SWu7AxoQqrqDT4SF+12bixBdjw="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var picker = new Pikaday({
+        field: document.getElementById('datepicker'),
+        format: 'YYYY-MM-DD',
+      });
+    </script>
+  </body>
+</html>
