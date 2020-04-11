@@ -1,20 +1,14 @@
 <template>
   <div class="media-card">
     <div class="media-card-image">
-      <img
-        src="https://images.unsplash.com/photo-1490855137152-82177ecaf6e4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2929d63d861df6513b9e1e34196f71a2&auto=format&fit=crop&w=700&q=60"
-        alt
-      />
+      <slot name="image"></slot>
     </div>
     <div class="media-card-content">
       <h4 class="media-card-heading">
-        Crossing the Street for Dummies
+        <slot name="heading">Crossing the Street for Dummies</slot>
       </h4>
       <div class="media-card-body">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae
-        quia veritatis dicta assumenda excepturi est, sed nam soluta dolorum
-        illum totam iusto, id ad tempore asperiores nisi quam voluptatibus
-        veniam!
+        <slot></slot>
       </div>
     </div>
   </div>
