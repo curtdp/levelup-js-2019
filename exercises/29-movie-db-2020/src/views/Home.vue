@@ -4,8 +4,9 @@
 
     <div>
       <JsonData :url="'/discover/movie?sort_by=popularity.desc'">
-        <div v-if="loading"></div>
-        <CardGrid v-else v-slot:default="{ response: movies }" :movies="movies"></CardGrid>
+        <template v-slot="{ response: movies }">
+          <CardGrid :movies="movies"></CardGrid>
+        </template>
       </JsonData>
     </div>
   </div>

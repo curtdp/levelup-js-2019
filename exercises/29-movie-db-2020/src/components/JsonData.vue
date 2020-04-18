@@ -1,7 +1,6 @@
 <script>
 const baseUrl = process.env.VUE_APP_API_BASE;
 const apiKey = process.env.VUE_APP_API_KEY;
-console.log(baseUrl);
 export default {
   props: ['url'],
   data() {
@@ -15,7 +14,6 @@ export default {
       .then(response => response.json())
       .then(response => {
         this.response = response;
-        console.log(response);
         this.loading = false;
       });
   },
