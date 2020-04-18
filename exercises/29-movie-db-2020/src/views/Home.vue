@@ -1,18 +1,19 @@
 <template>
-  <div class="home bg-red-500">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="mx-8">
+    <h2 class="mt-8 text-xl text-center">Most popular movies</h2>
+
+    <div>
+      <CardGrid />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
+import CardGrid from '@/components/CardGrid.vue';
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
+    CardGrid,
   },
 };
 </script>
