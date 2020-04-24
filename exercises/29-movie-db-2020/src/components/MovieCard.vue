@@ -1,27 +1,26 @@
 <template>
   <div class="w-full">
     <router-link :to="{name: 'MoviePage', params: {
-      id: `${date}`
+      id: movie.id
     }}">
-      <img
-        class="w-full"
-        src="https://image.tmdb.org/t/p/w300/khlcsYHr7Hi4Tkymc7UGDvcUcx.jpg"
-        alt="Постер к фильму Миссия невыполнима"
-      />
-      <h3 class="text-center">Mission Imposible</h3>
+      <img class="w-full" :src="movieUrl" alt="Постер к фильму Миссия невыполнима" />
+      <h3 class="text-center">{{ movie.title }}</h3>
     </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      date: '3123',
-    };
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    movieUrl() {
+      return `${process.env.VUE_APP_IMAGES_BASE_URL}w342${this.movie.poster_path}`;
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

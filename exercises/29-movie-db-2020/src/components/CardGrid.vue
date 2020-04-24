@@ -1,10 +1,8 @@
 <template>
   <div>
-    Сетка карточек
-    <span>{{ movies }}</span>
     <div class="flex flex-wrap -mx-2">
-      <div class="w-1/5 px-2 pt-4" v-for="card in 10" :key="card">
-        <MovieCard></MovieCard>
+      <div class="w-1/5 px-2 pt-4" v-for="movie in movies" :key="movie.id">
+        <MovieCard :movie="movie"></MovieCard>
       </div>
     </div>
   </div>
