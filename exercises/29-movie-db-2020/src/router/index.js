@@ -11,6 +11,12 @@ const routes = [
     component: Home,
   },
   {
+    path: '/page/:pageNumber',
+    name: 'HomePaginated',
+    component: Home,
+    props: true
+  },
+  {
     path: '/about-page',
     name: 'About',
     // route level code-splitting
