@@ -10,7 +10,12 @@
       @keydown.enter="goToResult"
       @keydown.esc="closeSuggestions"
     />
-    <button @click="goToResult" class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded">Search</button>
+    <button
+      @click="goToResult"
+      class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded"
+    >
+      Search
+    </button>
 
     <ul
       v-if="showSuggestions"
@@ -20,9 +25,12 @@
         <li v-for="(result, index) in searchResults" :key="result.id">
           <router-link
             class="block px-4 py-1 hover:bg-green-700 hover:text-green-100"
-            :class="[ (selectedResult === index) ? 'bg-green-700 text-green-100' : '' ]"
-            :to="{ name: 'MoviePage', params: { id: result.id }}"
-          >{{ result.title }}</router-link>
+            :class="[
+              selectedResult === index ? 'bg-green-700 text-green-100' : '',
+            ]"
+            :to="{ name: 'MoviePage', params: { id: result.id } }"
+            >{{ result.title }}</router-link
+          >
         </li>
       </template>
       <li class="px-4 py-1" v-else>No results</li>
@@ -110,5 +118,3 @@ export default {
   },
 };
 </script>
-
-

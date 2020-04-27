@@ -2,7 +2,11 @@
   <div class="mx-8">
     <h2 class="mt-8 text-xl text-center">Most popular movies</h2>
     <div>
-      <JsonData :url="`/discover/movie?sort_by=popularity.desc&page=${ $route.params.pageNumber }`">
+      <JsonData
+        :url="
+          `/discover/movie?sort_by=popularity.desc&page=${$route.params.pageNumber}`
+        "
+      >
         <template v-slot="{ response: movies, loading }">
           <div v-if="loading">Loading...</div>
           <CardGrid

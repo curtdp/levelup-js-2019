@@ -14,14 +14,16 @@ const routes = [
     path: '/page/:pageNumber',
     name: 'HomePaginated',
     component: Home,
-    props: true
+    props: true,
   },
   {
     path: '/search',
     name: 'SearchResults',
-    props: (route) => ({ query: route.query.q }),
+    props: route => ({ query: route.query.q }),
     component: () =>
-      import(/* webpackChunkName: "searchresults" */ '../views/SearchResults.vue'),
+      import(
+        /* webpackChunkName: "searchresults" */ '../views/SearchResults.vue'
+      ),
   },
   {
     path: '/about-page',

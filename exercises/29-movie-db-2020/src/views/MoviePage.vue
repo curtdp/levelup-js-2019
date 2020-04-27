@@ -3,8 +3,10 @@
   <!-- <template v-slot="{ response: movie, loading, backdropUrl }"> -->
   <div v-if="loading" class="mx-8">Loading...</div>
   <div class="w-full px-8" v-else>
-    <div class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64">
-      <h2 class="z-10 text-4xl text-white title">{{ movie.title}}</h2>
+    <div
+      class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64"
+    >
+      <h2 class="z-10 text-4xl text-white title">{{ movie.title }}</h2>
       <img :src="backdropUrl" class="absolute object-cover w-full h-full" />
     </div>
     <div>
@@ -18,7 +20,8 @@
               <router-link
                 class="text-green-600 underline hover:no-underline"
                 :to="`/genre/${genre.id}`"
-              >{{ genre.name }}</router-link>
+                >{{ genre.name }}</router-link
+              >
             </span>
           </p>
         </div>

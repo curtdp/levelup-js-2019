@@ -5,12 +5,16 @@
         <button
           class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
           @click="prevPage"
-        >Назад</button>
+        >
+          Назад
+        </button>
         <span class="px-4">{{ $route.params.pageNumber }}</span>
         <button
           class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
           @click="nextPage"
-        >Вперед</button>
+        >
+          Вперед
+        </button>
       </p>
     </div>
     <div class="flex flex-wrap -mx-2">
@@ -38,4 +42,3 @@ export default {
   },
 };
 </script>
-

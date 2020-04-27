@@ -3,7 +3,9 @@
     <h2 class="mt-8 text-xl text-center">Search results for "{{ query }}"</h2>
     <div>
       <JsonData
-        :url="`/search/movie?page=${ $route.params.pageNumber }&query=${this.query}&page=${page}`"
+        :url="
+          `/search/movie?page=${$route.params.pageNumber}&query=${this.query}&page=${page}`
+        "
       >
         <template v-slot="{ response: movies, loading }">
           <div v-if="loading">Loading...</div>

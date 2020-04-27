@@ -1,9 +1,18 @@
 <template>
   <div class="w-full">
-    <router-link :to="{name: 'MoviePage', params: {
-      id: movie.id
-    }}">
-      <img class="w-full" :src="movieUrl" alt="Постер к фильму Миссия невыполнима" />
+    <router-link
+      :to="{
+        name: 'MoviePage',
+        params: {
+          id: movie.id,
+        },
+      }"
+    >
+      <img
+        class="w-full"
+        :src="movieUrl"
+        alt="Постер к фильму Миссия невыполнима"
+      />
       <h3 class="text-center">{{ movie.title }}</h3>
     </router-link>
   </div>
