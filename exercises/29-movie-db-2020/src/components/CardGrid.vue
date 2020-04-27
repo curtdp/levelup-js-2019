@@ -5,16 +5,12 @@
         <button
           class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
           @click="prevPage"
-        >
-          Назад
-        </button>
+        >{{ $t('prevBtn')}}</button>
         <span class="px-4">{{ $route.params.pageNumber }}</span>
         <button
           class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
           @click="nextPage"
-        >
-          Вперед
-        </button>
+        >{{ $t('nextBtn')}}</button>
       </p>
     </div>
     <div class="flex flex-wrap -mx-2">
@@ -28,7 +24,7 @@
 <script>
 import MovieCard from './MovieCard.vue';
 export default {
-  props: ['movies'],
+  props: ['movies', 'lang'],
   components: {
     MovieCard,
   },
@@ -40,5 +36,30 @@ export default {
       this.$emit('goToNextPage');
     },
   },
+  watch: {
+    lang: {
+      handler: function(newLang) {
+        this.$i18n.locale = newLang;
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
+
+<i18n>
+  {
+    "en": {
+      "nextBtn": "Next",
+      "prevBtn": "Prev"
+    },
+    "ru": {
+      "nextBtn": "Вперёд",
+      "prevBtn": "Назад"
+    },
+    "uk": {
+      "nextBtn": "Вперед",
+      "prevBtn": "Назад"
+    }
+  }
+</i18n>

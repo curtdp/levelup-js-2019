@@ -1,10 +1,10 @@
 <template>
-  <div class="relative">
+  <div class="relative" ref="searchBar">
     <input
       v-model="searchQuery"
       class="px-4 py-2 border border-green-500 rounded"
       type="text"
-      placeholder="Search"
+      :placeholder="$t('btnSearch')"
       @keydown.down="selectNext"
       @keydown.up="selectPrev"
       @keydown.enter="goToResult"
@@ -13,9 +13,7 @@
     <button
       @click="goToResult"
       class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded"
-    >
-      Search
-    </button>
+    >{{ $t('btnSearch')}}</button>
 
     <ul
       v-if="showSuggestions"
@@ -29,11 +27,10 @@
               selectedResult === index ? 'bg-green-700 text-green-100' : '',
             ]"
             :to="{ name: 'MoviePage', params: { id: result.id } }"
-            >{{ result.title }}</router-link
-          >
+          >{{ result.title }}</router-link>
         </li>
       </template>
-      <li class="px-4 py-1" v-else>No results</li>
+      <li class="px-4 py-1" v-else>{{ $t('noResults')}}</li>
     </ul>
   </div>
 </template>
@@ -41,6 +38,7 @@
 <script>
 import config from '@/config.js';
 export default {
+  props: ['lang'],
   data() {
     return {
       searchQuery: '',
@@ -87,6 +85,7 @@ export default {
           name: 'MoviePage',
           params: { id: this.searchResults[this.selectedResult].id },
         });
+        this.isOpen = false;
       } else {
         this.$router.push(`/search?q=${this.searchQuery}`);
       }
@@ -97,10 +96,16 @@ export default {
     },
   },
   watch: {
+    lang: {
+      handler: function(newLang) {
+        this.$i18n.locale = newLang;
+      },
+      immediate: true,
+    },
     searchQuery() {
       if (this.hasInput) {
         fetch(
-          `${config.api_base_url}/search/movie?api_key=${config.api_key}&query=${this.searchQuery}`,
+          `${config.api_base_url}/search/movie?api_key=${config.api_key}&query=${this.searchQuery}&language=${this.lang}`,
         )
           .then(response => response.json())
           .then(response => {
@@ -116,5 +121,35 @@ export default {
       this.selectedResult = null;
     },
   },
+  mounted() {
+    const clickOutside = e => {
+      if (!this.$refs.searchBar.contains(e.target)) {
+        this.isOpen = false;
+      } else if (this.hasInput) {
+        this.isOpen = true;
+      }
+    };
+    document.addEventListener('click', clickOutside);
+    this.$once('hook:beforeDestroy', function() {
+      document.removeEventListener('click', clickOutside);
+    });
+  },
 };
 </script>
+
+<i18n>
+{
+  "en": {
+    "btnSearch": "Search",
+    "noResults": "No results"
+  },
+  "ru": {
+    "btnSearch": "Поиск",
+    "noResults": "Нет результатов"
+  },
+  "uk": {
+    "btnSearch": "Пошук",
+    "noResults": "Результатів немає"
+  }
+}
+</i18n>
