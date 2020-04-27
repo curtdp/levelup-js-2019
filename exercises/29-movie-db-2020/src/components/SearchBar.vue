@@ -10,7 +10,7 @@
       @keydown.enter="goToResult"
       @keydown.esc="closeSuggestions"
     />
-    <button class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded">Search</button>
+    <button @click="goToResult" class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded">Search</button>
 
     <ul
       v-if="showSuggestions"
@@ -79,6 +79,8 @@ export default {
           name: 'MoviePage',
           params: { id: this.searchResults[this.selectedResult].id },
         });
+      } else {
+        this.$router.push(`/search?q=${this.searchQuery}`);
       }
     },
     closeSuggestions() {

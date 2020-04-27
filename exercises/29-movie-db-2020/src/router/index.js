@@ -17,6 +17,13 @@ const routes = [
     props: true
   },
   {
+    path: '/search',
+    name: 'SearchResults',
+    props: (route) => ({ query: route.query.q }),
+    component: () =>
+      import(/* webpackChunkName: "searchresults" */ '../views/SearchResults.vue'),
+  },
+  {
     path: '/about-page',
     name: 'About',
     // route level code-splitting
