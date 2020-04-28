@@ -20,7 +20,7 @@
       </div>
     </header>
     <router-view :lang="lang" />
-    <Footer class="mx-8 mt-4 mb-4"></Footer>
+    <Footer />
   </div>
 </template>
 
