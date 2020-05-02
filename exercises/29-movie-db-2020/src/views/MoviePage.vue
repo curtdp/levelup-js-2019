@@ -1,12 +1,14 @@
 <template>
-  <div v-if="loading" class="mx-8">{{ $t('loading')}}</div>
+  <div v-if="loading" class="mx-8">{{ $t('loading') }}</div>
   <div class="w-full px-8" v-else>
-    <div class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64">
+    <div
+      class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64"
+    >
       <h2 class="z-10 text-4xl text-white title">{{ movie.title }}</h2>
       <img :src="backdropUrl" class="absolute object-cover w-full h-full" />
     </div>
     <div>
-      <h2 class="mt-8 mb-4 text-2xl">{{ $t('descriptionTitle')}}</h2>
+      <h2 class="mt-8 mb-4 text-2xl">{{ $t('descriptionTitle') }}</h2>
       <div class="flex">
         <div class="w-1/4 mr-4">
           <img class="w-full" :src="`${imgUrlPrefix}${movie.poster_path}`" />
@@ -16,19 +18,33 @@
               <router-link
                 class="text-green-600 underline hover:no-underline"
                 :to="`/genre/${genre.id}`"
-              >{{ genre.name }}</router-link>
+                >{{ genre.name }}</router-link
+              >
             </span>
           </p>
         </div>
         <div class="w-3/4">
           <p>{{ movie.overview }}</p>
-          <div>
+          <div v-if="trailers">
             <div v-if="trailers.results.length > 0">
-              <h2 class="mt-8 mb-4 text-2xl">{{ $t('trailersTitle')}}</h2>
+              <div class="space-x-2">
+                <button
+                  class="px-4 py-2 text-green-100 bg-green-700 rounded-md focus:outline-none focus:shadow-outline"
+                  v-for="(trailer, i) in trailers.results"
+                  :key="trailer.id"
+                  @click="showTrailer(i)"
+                >
+                  {{ trailer.name }}
+                </button>
+              </div>
+              <h2 class="mt-8 mb-4 text-2xl">{{ $t('trailersTitle') }}</h2>
+              <div v-show="!trailerFrameLoaded">{{ $t('loading') }}</div>
               <iframe
-                v-for="(trailer, i) in trailers.results"
-                :key="i"
-                :src="`https://www.youtube.com/embed/${trailer.key}`"
+                v-show="trailerFrameLoaded"
+                @load="trailerFrameLoaded = true"
+                :src="
+                  `https://www.youtube.com/embed/${trailers.results[selectedTrailerIndex].key}`
+                "
                 frameborder="0"
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
@@ -50,6 +66,8 @@ export default {
   data() {
     return {
       trailers: null,
+      selectedTrailerIndex: 0,
+      trailerFrameLoaded: false,
       movie: null,
       loading: true,
       backdropUrl: null,
@@ -81,6 +99,13 @@ export default {
         .then(response => {
           this.trailers = response;
         });
+    },
+    showTrailer(trailerIndex) {
+      if (this.selectedTrailerIndex === trailerIndex) {
+        return;
+      }
+      this.trailerFrameLoaded = false;
+      this.selectedTrailerIndex = trailerIndex;
     },
   },
   created() {
