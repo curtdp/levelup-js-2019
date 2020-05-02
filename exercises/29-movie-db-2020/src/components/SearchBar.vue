@@ -15,23 +15,36 @@
       class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded"
     >{{ $t('btnSearch')}}</button>
 
-    <ul
-      v-if="showSuggestions"
-      class="absolute z-20 w-full py-2 mt-1 bg-white border border-green-500 rounded shadow-2xl"
+    <transition
+      enter-class="transform -translate-y-2 opacity-0"
+      enter-active-class="transition duration-200 ease-in"
+      leave-to-class="transform -translate-y-2 opacity-0"
+      leave-active-class="transition duration-300 ease-out"
     >
-      <template v-if="searchResults.length">
-        <li v-for="(result, index) in searchResults" :key="result.id">
-          <router-link
-            class="block px-4 py-1 hover:bg-green-700 hover:text-green-100"
-            :class="[
+      <div
+        v-if="showSuggestions"
+        class="absolute z-20 w-full py-2 mt-1 bg-white border border-green-500 rounded shadow-2xl"
+      >
+        <template v-if="searchResults.length">
+          <transition-group
+            tag="ul"
+            enter-class="transform -translate-x-10"
+            enter-active-class="transition duration-200 ease-in"
+          >
+            <li v-for="(result, index) in searchResults" :key="result.id">
+              <router-link
+                class="block px-4 py-1 hover:bg-green-700 hover:text-green-100"
+                :class="[
               selectedResult === index ? 'bg-green-700 text-green-100' : '',
             ]"
-            :to="{ name: 'MoviePage', params: { id: result.id } }"
-          >{{ result.title }}</router-link>
-        </li>
-      </template>
-      <li class="px-4 py-1" v-else>{{ $t('noResults')}}</li>
-    </ul>
+                :to="{ name: 'MoviePage', params: { id: result.id } }"
+              >{{ result.title }}</router-link>
+            </li>
+          </transition-group>
+        </template>
+        <li class="px-4 py-1" v-else>{{ $t('noResults')}}</li>
+      </div>
+    </transition>
   </div>
 </template>
 

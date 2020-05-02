@@ -6,8 +6,12 @@
       <router-link to="/custom-transition-classes"
         >Custom transition classes</router-link
       >
+      |
+      <router-link to="/list-transitions">List transitions</router-link>
     </div>
-    <router-view />
+    <transition mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 <style src="./assets/styles/style.css"></style>

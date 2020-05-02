@@ -1,22 +1,21 @@
 <template>
   <div>
-    <div>
-      <p>
-        <button
-          class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
-          @click="prevPage"
-        >{{ $t('prevBtn')}}</button>
-        <span class="px-4">{{ $route.params.pageNumber }}</span>
-        <button
-          class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
-          @click="nextPage"
-        >{{ $t('nextBtn')}}</button>
-      </p>
-    </div>
+    <div></div>
     <div class="flex flex-wrap -mx-2">
       <div class="w-1/5 px-2 pt-4" v-for="movie in movies" :key="movie.id">
         <MovieCard :movie="movie"></MovieCard>
       </div>
+    </div>
+    <div>
+      <button
+        class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
+        @click="prevPage"
+      >{{ $t('prevBtn')}}</button>
+      <span class="px-4">{{ $route.params.pageNumber }}</span>
+      <button
+        class="px-4 py-2 text-green-200 bg-green-700 border border-green-800 rounded"
+        @click="nextPage"
+      >{{ $t('nextBtn')}}</button>
     </div>
   </div>
 </template>
@@ -42,6 +41,17 @@ export default {
         this.$i18n.locale = newLang;
       },
       immediate: true,
+    },
+    $route(to, from) {
+      console.log('to:', to);
+      console.log('from', from);
+      if (to.name === 'HomePaginated' && from.name === 'HomePaginated') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+        console.log('OK!!!!!!!');
+      }
     },
   },
 };

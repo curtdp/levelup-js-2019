@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "tailwindcss": "^1.4.1",
+    "lodash": "^4.17.15",
+    "tailwindcss": "^1.4.4",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6"
   },

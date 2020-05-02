@@ -30,6 +30,17 @@ const routes = [
         /* webpackChunkName: "custom-transition-classes" */ '../views/CustomTransitionClasses.vue'
       ),
   },
+  {
+    path: '/list-transitions',
+    name: 'ListTransitions',
+    // route level code-splitting
+    // this generates a separate chunk (list-transitions.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "custom-transition-classes" */ '../views/ListTransitions.vue'
+      ),
+  },
 ];
 
 const router = new VueRouter({
