@@ -1,9 +1,7 @@
 <template>
   <div v-if="loading" class="mx-8">{{ $t('loading') }}</div>
   <div class="w-full px-8" v-else>
-    <div
-      class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64"
-    >
+    <div class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64">
       <h2 class="z-10 text-4xl text-white title">{{ movie.title }}</h2>
       <img :src="backdropUrl" class="absolute object-cover w-full h-full" />
     </div>
@@ -18,8 +16,7 @@
               <router-link
                 class="text-green-600 underline hover:no-underline"
                 :to="`/genre/${genre.id}`"
-                >{{ genre.name }}</router-link
-              >
+              >{{ genre.name }}</router-link>
             </span>
           </p>
         </div>
@@ -33,23 +30,24 @@
                   v-for="(trailer, i) in trailers.results"
                   :key="trailer.id"
                   @click="showTrailer(i)"
-                >
-                  {{ trailer.name }}
-                </button>
+                >{{ trailer.name }}</button>
               </div>
               <h2 class="mt-8 mb-4 text-2xl">{{ $t('trailersTitle') }}</h2>
               <div v-show="!trailerFrameLoaded">{{ $t('loading') }}</div>
-              <iframe
-                v-show="trailerFrameLoaded"
-                @load="trailerFrameLoaded = true"
-                :src="
+
+              <div class="relative w-full pt-16/9">
+                <iframe
+                  v-show="trailerFrameLoaded"
+                  @load="trailerFrameLoaded = true"
+                  :src="
                   `https://www.youtube.com/embed/${trailers.results[selectedTrailerIndex].key}`
                 "
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                class="w-full h-48"
-              ></iframe>
+                  frameborder="0"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  class="absolute top-0 w-full h-full"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>

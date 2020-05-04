@@ -1,6 +1,9 @@
 <template>
   <div class="mx-8">
-    <h2 class="mt-8 text-4xl font-bold text-center text-gray-800">{{ $t('homeTitle')}}</h2>
+    <h2
+      data-cy="homeTitle"
+      class="mt-8 text-4xl font-bold text-center text-gray-800"
+    >{{ $t('homeTitle')}}</h2>
     <div>
       <JsonData
         :url="

@@ -1,6 +1,7 @@
 <template>
   <div class="relative" ref="searchBar">
     <input
+      data-cy="searchInput"
       v-model="searchQuery"
       class="px-4 py-2 border border-green-500 rounded"
       type="text"
@@ -23,6 +24,7 @@
     >
       <div
         v-if="showSuggestions"
+        data-cy="searchSuggestions"
         class="absolute z-20 w-full py-2 mt-1 bg-white border border-green-500 rounded shadow-2xl"
       >
         <template v-if="searchResults.length">
@@ -33,6 +35,7 @@
           >
             <li v-for="(result, index) in searchResults" :key="result.id">
               <router-link
+                :data-cy="`resultLink${index}`"
                 class="block px-4 py-1 hover:bg-green-700 hover:text-green-100"
                 :class="[
               selectedResult === index ? 'bg-green-700 text-green-100' : '',

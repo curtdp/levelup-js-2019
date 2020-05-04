@@ -1,15 +1,3 @@
-const { sum, subtract, sumAsync, subtractAsync } = require('../math');
-
-test('sum makes addition', () => {
-  let result = sum(3, 7);
-  let expected = 10;
-  expect(result).toBe(expected);
-});
-
-test('subtract makes subtraction', () => {
-  expect(subtract(7, 3)).toBe(4);
-});
-
 function expect(actual) {
   return {
     toBe(expected) {
@@ -22,12 +10,15 @@ function expect(actual) {
   };
 }
 
-function test(title, callback) {
+async function test(title, callback) {
   try {
-    callback();
+    await callback();
     console.log(`✅ ${title}`);
   } catch (error) {
     console.error(`❌ ${title}`);
     console.error(error);
   }
 }
+
+global.test = test;
+global.expect = expect;

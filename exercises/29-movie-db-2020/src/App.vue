@@ -12,9 +12,9 @@
       </div>
       <div class="flex items-center">
         <div class="mr-4">
-          <button @click="lang = 'uk'">укр</button> |
-          <button @click="lang = 'ru'">рус</button> |
-          <button @click="lang = 'en'">eng</button>
+          <button data-cy="ukrLang" @click="lang = 'uk'">укр</button> |
+          <button data-cy="rusLang" @click="lang = 'ru'">рус</button> |
+          <button data-cy="engLang" @click="lang = 'en'">eng</button>
         </div>
         <SearchBar :lang="lang" />
       </div>
