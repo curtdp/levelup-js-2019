@@ -1,7 +1,9 @@
 <template>
   <div v-if="loading" class="mx-8">{{ $t('loading') }}</div>
   <div class="w-full px-8" v-else>
-    <div class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64">
+    <div
+      class="relative flex items-center justify-center h-48 -mx-8 overflow-hidden md:h-64"
+    >
       <h2 class="z-10 text-4xl text-white title">{{ movie.title }}</h2>
       <img :src="backdropUrl" class="absolute object-cover w-full h-full" />
     </div>
@@ -16,7 +18,8 @@
               <router-link
                 class="text-green-600 underline hover:no-underline"
                 :to="`/genre/${genre.id}`"
-              >{{ genre.name }}</router-link>
+                >{{ genre.name }}</router-link
+              >
             </span>
           </p>
         </div>
@@ -30,7 +33,9 @@
                   v-for="(trailer, i) in trailers.results"
                   :key="trailer.id"
                   @click="showTrailer(i)"
-                >{{ trailer.name }}</button>
+                >
+                  {{ trailer.name }}
+                </button>
               </div>
               <h2 class="mt-8 mb-4 text-2xl">{{ $t('trailersTitle') }}</h2>
               <div v-show="!trailerFrameLoaded">{{ $t('loading') }}</div>
@@ -39,9 +44,7 @@
                 <iframe
                   v-show="trailerFrameLoaded"
                   @load="trailerFrameLoaded = true"
-                  :src="
-                  `https://www.youtube.com/embed/${trailers.results[selectedTrailerIndex].key}`
-                "
+                  :src="`https://www.youtube.com/embed/${trailers.results[selectedTrailerIndex].key}`"
                   frameborder="0"
                   allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                   allowfullscreen
@@ -59,7 +62,6 @@
 <script>
 import config from '@/config.js';
 export default {
-  props: ['lang'],
   components: {},
   data() {
     return {
@@ -75,6 +77,9 @@ export default {
     imgUrlPrefix() {
       return config.images.base_url + config.images.poster_sizes[2];
     },
+    lang() {
+      return this.$store.state.lang;
+    },
   },
   methods: {
     fetchData() {
@@ -83,8 +88,8 @@ export default {
       fetch(
         `${config.api_base_url}/movie/${this.$route.params.id}?api_key=${config.api_key}&language=${this.lang}`,
       )
-        .then(response => response.json())
-        .then(response => {
+        .then((response) => response.json())
+        .then((response) => {
           this.movie = response;
           this.loading = false;
           this.backdropUrl = `${process.env.VUE_APP_IMAGES_BASE_URL}w342${response.backdrop_path}`;
@@ -93,8 +98,8 @@ export default {
       fetch(
         `${config.api_base_url}/movie/${this.$route.params.id}/videos?api_key=${config.api_key}&language=${this.lang}`,
       )
-        .then(response => response.json())
-        .then(response => {
+        .then((response) => response.json())
+        .then((response) => {
           this.trailers = response;
         });
     },
@@ -111,7 +116,7 @@ export default {
   },
   watch: {
     lang: {
-      handler: function(newLang) {
+      handler: function (newLang) {
         this.$i18n.locale = newLang;
         this.fetchData();
       },

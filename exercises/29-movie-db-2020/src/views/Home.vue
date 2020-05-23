@@ -3,56 +3,70 @@
     <h2
       data-cy="homeTitle"
       class="mt-8 text-4xl font-bold text-center text-gray-800"
-    >{{ $t('homeTitle')}}</h2>
-    <div>
-      <JsonData
-        :url="
-          `/discover/movie?sort_by=popularity.desc&page=${$route.params.pageNumber}&language=${lang}`
-        "
-      >
-        <template v-slot="{ response: movies, loading }">
-          <div v-if="loading">{{ $t('loading')}}</div>
-          <CardGrid
-            v-else
-            :movies="movies.results"
-            @goToPrevPage="goToPrevPage"
-            @goToNextPage="goToNextPage"
-            :lang="lang"
-          ></CardGrid>
-        </template>
-      </JsonData>
+    >
+      {{ $t('homeTitle') }}
+    </h2>
+    <div class="relative">
+      <div class="absolute top-0 left-0 h-3 mt-8 ml-8">
+        <div v-if="loading">{{ $t('loading') }}</div>
+      </div>
+      <CardGrid
+        @goToPrevPage="goToPrevPage"
+        @goToNextPage="goToNextPage"
+        :lang="lang"
+      ></CardGrid>
     </div>
   </div>
 </template>
 
 <script>
 import CardGrid from '@/components/CardGrid.vue';
-import JsonData from '@/components/JsonData.vue';
+
 export default {
   name: 'Home',
-  props: ['lang'],
+  props: ['pageNumber'],
   components: {
     CardGrid,
-    JsonData,
+  },
+  created() {
+    this.$store.dispatch('getMovies', {
+      page: +this.pageNumber || 1,
+    });
   },
   methods: {
     goToNextPage() {
       this.$router.push({
         name: 'HomePaginated',
-        params: { pageNumber: +this.$route.params.pageNumber + 1 },
+        params: { pageNumber: +this.pageNumber + 1 },
       });
     },
     goToPrevPage() {
       this.$router.push({
         name: 'HomePaginated',
-        params: { pageNumber: +this.$route.params.pageNumber - 1 },
+        params: { pageNumber: +this.pageNumber - 1 },
       });
     },
   },
+  computed: {
+    lang() {
+      return this.$store.state.lang;
+    },
+    loading() {
+      return this.$store.state.isLoading;
+    },
+  },
   watch: {
+    $route() {
+      this.$store.dispatch('getMovies', {
+        page: +this.pageNumber || 1,
+      });
+    },
     lang: {
-      handler: function(newLang) {
+      handler: function (newLang) {
         this.$i18n.locale = newLang;
+        this.$store.dispatch('getMovies', {
+          page: +this.pageNumber || 1,
+        });
       },
       immediate: true,
     },

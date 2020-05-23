@@ -2,34 +2,34 @@
   <div class="mx-8">
     <h2 class="mt-8 text-xl text-center">Search results for "{{ query }}"</h2>
     <div>
-      <JsonData
-        :url="
-          `/search/movie?page=${$route.params.pageNumber}&query=${this.query}&page=${page}`
-        "
-      >
-        <template v-slot="{ response: movies, loading }">
-          <div v-if="loading">Loading...</div>
-          <CardGrid
-            v-else
-            :movies="movies.results"
-            @goToPrevPage="goToPrevPage"
-            @goToNextPage="goToNextPage"
-          ></CardGrid>
-        </template>
-      </JsonData>
+      <div v-if="loading">Loading...</div>
+      <CardGrid
+        @goToPrevPage="goToPrevPage"
+        @goToNextPage="goToNextPage"
+      ></CardGrid>
     </div>
   </div>
 </template>
 
 <script>
 import CardGrid from '@/components/CardGrid.vue';
-import JsonData from '@/components/JsonData.vue';
+
 export default {
   props: ['query'],
   name: 'SearchResults',
   components: {
     CardGrid,
-    JsonData,
+  },
+  computed: {
+    loading() {
+      return this.$store.state.isLoading;
+    },
+  },
+  created() {
+    this.$store.dispatch('getSearchResults', {
+      page: 1,
+      searchQuery: this.$route.query.q,
+    });
   },
   data() {
     return {

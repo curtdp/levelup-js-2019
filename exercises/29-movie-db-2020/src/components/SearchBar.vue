@@ -14,7 +14,9 @@
     <button
       @click="goToResult"
       class="px-4 py-2 ml-4 text-green-100 bg-green-600 rounded"
-    >{{ $t('btnSearch')}}</button>
+    >
+      {{ $t('btnSearch') }}
+    </button>
 
     <transition
       enter-class="transform -translate-y-2 opacity-0"
@@ -38,14 +40,15 @@
                 :data-cy="`resultLink${index}`"
                 class="block px-4 py-1 hover:bg-green-700 hover:text-green-100"
                 :class="[
-              selectedResult === index ? 'bg-green-700 text-green-100' : '',
-            ]"
+                  selectedResult === index ? 'bg-green-700 text-green-100' : '',
+                ]"
                 :to="{ name: 'MoviePage', params: { id: result.id } }"
-              >{{ result.title }}</router-link>
+                >{{ result.title }}</router-link
+              >
             </li>
           </transition-group>
         </template>
-        <li class="px-4 py-1" v-else>{{ $t('noResults')}}</li>
+        <li class="px-4 py-1" v-else>{{ $t('noResults') }}</li>
       </div>
     </transition>
   </div>
@@ -54,7 +57,6 @@
 <script>
 import config from '@/config.js';
 export default {
-  props: ['lang'],
   data() {
     return {
       searchQuery: '',
@@ -70,6 +72,9 @@ export default {
     },
     showSuggestions() {
       return this.hasInput && this.isOpen ? true : false;
+    },
+    lang() {
+      return this.$store.state.lang;
     },
   },
   methods: {
@@ -113,7 +118,7 @@ export default {
   },
   watch: {
     lang: {
-      handler: function(newLang) {
+      handler: function (newLang) {
         this.$i18n.locale = newLang;
       },
       immediate: true,
@@ -123,8 +128,8 @@ export default {
         fetch(
           `${config.api_base_url}/search/movie?api_key=${config.api_key}&query=${this.searchQuery}&language=${this.lang}`,
         )
-          .then(response => response.json())
-          .then(response => {
+          .then((response) => response.json())
+          .then((response) => {
             this.searchResults = response.results.slice(0, 5);
             this.loading = false;
             this.selectedResult = null;
@@ -138,7 +143,7 @@ export default {
     },
   },
   mounted() {
-    const clickOutside = e => {
+    const clickOutside = (e) => {
       if (!this.$refs.searchBar.contains(e.target)) {
         this.isOpen = false;
       } else if (this.hasInput) {
@@ -146,7 +151,7 @@ export default {
       }
     };
     document.addEventListener('click', clickOutside);
-    this.$once('hook:beforeDestroy', function() {
+    this.$once('hook:beforeDestroy', function () {
       document.removeEventListener('click', clickOutside);
     });
   },

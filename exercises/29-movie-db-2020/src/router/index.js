@@ -10,6 +10,7 @@ const routes = [
     name: 'Home',
     component: Home,
   },
+  { path: '/page/1', redirect: '/' },
   {
     path: '/page/:pageNumber',
     name: 'HomePaginated',

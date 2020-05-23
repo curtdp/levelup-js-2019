@@ -12,8 +12,8 @@ export default {
   },
   created() {
     fetch(`${baseUrl}${this.url}&api_key=${apiKey}`)
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         this.response = response;
         this.loading = false;
         this.backdropUrl = `${process.env.VUE_APP_IMAGES_BASE_URL}w342${response.backdrop_path}`;
@@ -29,8 +29,8 @@ export default {
   watch: {
     $route() {
       fetch(`${baseUrl}${this.url}&api_key=${apiKey}`)
-        .then(response => response.json())
-        .then(response => {
+        .then((response) => response.json())
+        .then((response) => {
           this.response = response;
           this.loading = false;
           this.backdropUrl = `${process.env.VUE_APP_IMAGES_BASE_URL}w342${response.backdrop_path}`;
