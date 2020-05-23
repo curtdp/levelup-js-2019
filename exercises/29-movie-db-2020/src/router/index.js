@@ -10,12 +10,21 @@ const routes = [
     name: 'Home',
     component: Home,
   },
-  { path: '/page/1', redirect: '/' },
+  // { path: '/page/1', redirect: '/' },
   {
     path: '/page/:pageNumber',
     name: 'HomePaginated',
     component: Home,
     props: true,
+    // beforeEnter: (to, from, next) => {
+    //   console.log('to: ', to.params);
+    //   if (to.params.pageNumber == 1) {
+
+    //     console.log('page 1');
+    //     next('/');
+    //   }
+    //   next();
+    // },
   },
   {
     path: '/search',
@@ -71,6 +80,11 @@ const router = new VueRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  if (to.params.pageNumber == 1) {
+    console.log('page 1');
+    next('/');
+  }
+
   console.log(to);
   if (to.query.approved) {
     console.log(to.query.request_token);

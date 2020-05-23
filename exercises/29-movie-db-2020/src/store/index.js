@@ -15,6 +15,9 @@ export default new Vuex.Store({
     moviesList(state) {
       return state.moviesResponse.results;
     },
+    totalPages(state) {
+      return state.moviesResponse.total_pages;
+    },
   },
   mutations: {
     CHANGE_LOCALE(state, language) {
@@ -26,8 +29,21 @@ export default new Vuex.Store({
     LOAD_MOVIES(state, apiResponse) {
       state.moviesResponse = apiResponse;
     },
+    SET_PAGE(state, page) {
+      state.currentPage = page;
+    },
   },
   actions: {
+    nextPage({ state, dispatch }) {
+      dispatch('getMovies', {
+        page: state.currentPage + 1,
+      });
+    },
+    prevPage({ state, dispatch }) {
+      dispatch('getMovies', {
+        page: state.currentPage - 1,
+      });
+    },
     async getMovies({ commit, state }, { page }) {
       commit('CHANGE_LOADING', true);
       try {

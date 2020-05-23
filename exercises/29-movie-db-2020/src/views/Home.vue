@@ -3,24 +3,19 @@
     <h2
       data-cy="homeTitle"
       class="mt-8 text-4xl font-bold text-center text-gray-800"
-    >
-      {{ $t('homeTitle') }}
-    </h2>
+    >{{ $t('homeTitle') }}</h2>
     <div class="relative">
       <div class="absolute top-0 left-0 h-3 mt-8 ml-8">
-        <div v-if="loading">{{ $t('loading') }}</div>
+        <div v-if="isLoading">{{ $t('loading') }}</div>
       </div>
-      <CardGrid
-        @goToPrevPage="goToPrevPage"
-        @goToNextPage="goToNextPage"
-        :lang="lang"
-      ></CardGrid>
+      <CardGrid :lang="lang"></CardGrid>
     </div>
   </div>
 </template>
 
 <script>
 import CardGrid from '@/components/CardGrid.vue';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'Home',
@@ -29,36 +24,22 @@ export default {
     CardGrid,
   },
   created() {
+    this.SET_PAGE(+this.$route.params.pageNumber || 1);
     this.$store.dispatch('getMovies', {
-      page: +this.pageNumber || 1,
+      page: +this.currentPage,
     });
   },
-  methods: {
-    goToNextPage() {
-      this.$router.push({
-        name: 'HomePaginated',
-        params: { pageNumber: +this.pageNumber + 1 },
-      });
-    },
-    goToPrevPage() {
-      this.$router.push({
-        name: 'HomePaginated',
-        params: { pageNumber: +this.pageNumber - 1 },
-      });
-    },
-  },
   computed: {
-    lang() {
-      return this.$store.state.lang;
-    },
-    loading() {
-      return this.$store.state.isLoading;
-    },
+    ...mapState(['lang', 'isLoading', 'currentPage'])
+  },
+  methods: {
+    ...mapMutations(['SET_PAGE'])
   },
   watch: {
     $route() {
+      this.SET_PAGE(+this.$route.params.pageNumber || 1);
       this.$store.dispatch('getMovies', {
-        page: +this.pageNumber || 1,
+        page: +this.currentPage,
       });
     },
     lang: {
