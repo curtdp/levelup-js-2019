@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -95,7 +96,6 @@ router.beforeEach(async (to, from, next) => {
 });
 
 async function createSession(to) {
-  console.log('CreateSession');
   const data = await fetch(
     `${process.env.VUE_APP_API_BASE}/authentication/session/new?api_key=${process.env.VUE_APP_API_KEY}`,
     {
@@ -111,6 +111,7 @@ async function createSession(to) {
   const json = await data.json();
   console.log(json);
   localStorage.setItem('session_id', json.session_id);
+  store.dispatch('getUserInfo');
 }
 
 export default router;
